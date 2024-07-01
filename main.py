@@ -17,18 +17,6 @@ new_mail_entry_count = 0                # delivery entries counter
 open_mailbox_count = 0                  # number of times the mailbox was opened
 last_random_sent_ticks = 0              # milliseconds
 
-# Configure the date and time of the pico using the ntp library
-# (yrs, mths, day, wkday, hrs, m, s, subseconds) format
-rtc = machine.RTC()
-ntptime.settime()
-
-# Check if the date and time is configure correctly on the device 
-print("Current time: ", rtc.datetime())
-
-# Enter time offset (ntp doesn't account for timezones)
-time_offset = 2   # +2 hours
-
-
 # Led lights
 red = Pin(14, Pin.OUT)
 green = Pin(15, Pin.OUT)
@@ -112,6 +100,19 @@ client = MQTTClient(keys.AIO_CLIENT_ID, keys.AIO_SERVER, keys.AIO_PORT, keys.AIO
 # Connect to the MQTT server
 client.connect()
 print("Connected to %s" % (keys.AIO_SERVER))
+
+# Configure the date and time of the pico using the ntp library
+# (yrs, mths, day, wkday, hrs, m, s, subseconds) format
+rtc = machine.RTC()
+ntptime.settime()
+
+# Check if the date and time is configure correctly on the device 
+print("Current time: ", rtc.datetime())
+
+# Enter time offset (ntp doesn't account for timezones)
+time_offset = 2   # +2 hours
+
+
 
 
 print("Mailbox waking up.................")
