@@ -87,11 +87,6 @@ try:
 except KeyboardInterrupt:
   print("Keyboard interrupt")
 
-# HTTP request
-try:
-  wifiConnection.http_get()
-except (Exception, KeyboardInterrupt) as err:
-  print("No Internet", err)
 
 # Use the MQTT protocol to connect to Adafruit IO
 client = MQTTClient(keys.AIO_CLIENT_ID, keys.AIO_SERVER, keys.AIO_PORT, keys.AIO_USER, keys.AIO_KEY)
